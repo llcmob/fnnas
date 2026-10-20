@@ -112,6 +112,7 @@ on:
           - nanopc-t4
           - nanopc-t6
           - nanopi-m5
+          - nanopi-m6
           - nanopi-r5c
           - nanopi-r5s
           - nanopi-som
