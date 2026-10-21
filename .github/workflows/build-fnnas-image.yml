@@ -471,8 +471,9 @@ jobs:
           [[ "${?}" -ne "0" ]] && echo "Error: Download failed." && exit 1
 
           # Create directory symlinks for packaging
+          # (the _actions/ophub/fnnas symlink is gone: no shared-action checkout
+          # exists anymore — the build step runs fork-local renas.)
           ln -sf /builder/fnnas ${{ github.workspace }}/fnnas
-          ln -sf /builder/fnnas /home/runner/work/_actions/ophub/fnnas/main/fnnas
 
           echo "build_tag=${build_tag}" >> ${GITHUB_ENV}
           echo "status=success" >> ${GITHUB_OUTPUT}
