@@ -492,8 +492,9 @@ jobs:
           cp -f fnnas/*.img.xz fnnas-arm64/ 2>/dev/null || true
           down_file="$(ls fnnas-arm64/*.img* 2>/dev/null | grep -v '\.img$' | head -n 1)"
           [[ -n "${down_file}" ]] || { echo "Error: no base image in fnnas-arm64."; exit 1; }
-          [[ "${down_file:0-4}" == ".xz" ]] && xz -d "${down_file}" && sync
-          [[ "${down_file:0-4}" == ".gz" ]] && gzip -df "${down_file}" && sync
+          [[ "${down_file:0-3}" == ".xz" ]] && xz -d "${down_file}" && sync
+          [[ "${down_file:0-3}" == ".gz" ]] && gzip -df "${down_file}" && sync
+          [[ "${down_file:0-4}" == ".zip" ]] && unzip -o "${down_file}" && sync
           echo "Contents of [ fnnas-arm64 ]: $(ls -lh fnnas-arm64/)"
           make_args=()
           [[ -n "${{ inputs.fnnas_board }}"   ]] && make_args+=(-b "${{ inputs.fnnas_board }}")
